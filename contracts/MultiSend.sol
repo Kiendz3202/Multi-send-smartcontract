@@ -111,10 +111,10 @@ contract MultiSend {
             total_value >= totalAmnt,
             "The value is not sufficient or exceed"
         );
-
+        //call unsafe_inc() để save gas
         for (uint i = 0; i < addrs.length; i = unsafe_inc(i)) {
-            // first subtract the transferring amount from the total_value
-            // of the smart-contract then send it to the receiver
+            //nếu dùng total_value thì nó sẽ tốn nhiều gas hơn cho mỗi lần gọi đến vì là biến global,
+            //tạo _total_value để gọi r update lần cuối vào total_value sẽ mất ít gas hơn
             _total_value -= amnts[i];
 
             // send the specified amount to the recipient
@@ -124,6 +124,7 @@ contract MultiSend {
         total_value = _total_value;
     }
 
+    //use unsafe math to save gas
     function unsafe_inc(uint x) private pure returns (uint) {
         unchecked {
             return x + 1;

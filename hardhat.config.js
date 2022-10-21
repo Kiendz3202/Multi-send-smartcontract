@@ -24,6 +24,11 @@ module.exports = {
 			gasPrice: 10000000000,
 			blockGasLimit: 1000000,
 		},
+		firebirdtest: {
+			url: 'https://rpc.firefly.firebirdchain.com/',
+			accounts: [process.env.PRIVATE_KEY],
+			chainId: 9000,
+		},
 	},
 	etherscan: {
 		apiKey: 'HUEBJFAH9KHYDIGPJSGGEJ839NA2NP6KDX',
